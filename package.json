@@ -1,0 +1,19 @@
+{
+  "name": "transom-scaffold-example",
+  "version": "0.1.0",
+  "repository": {
+    "git": "https://github.com/binaryops-wiebo/transom-scaffold-example"
+  },
+  "description": "Getting started with TransonJS using static content only.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "debug": "node --inspect-brk index.js"
+  },
+  "author": "Wiebo Troost",
+  "license": "MIT",
+  "dependencies": {
+    "@transomjs/transom-core": "^1.0.4",
+    "@transomjs/transom-scaffold": "^1.0.10"
+  }
+}
