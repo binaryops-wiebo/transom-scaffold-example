@@ -1,7 +1,7 @@
 'use strict';
-
 const Transom = require('@transomjs/transom-core');
 const transomScaffold = require('@transomjs/transom-scaffold');
+const opn = require('opn');
 
 const transom = new Transom();
 
@@ -11,19 +11,30 @@ const transom = new Transom();
 const myApi = require('./myApi');
 console.log("Running " + myApi.name);
 
-
-// Register my TransomJS SMTP module.
-transom.configure(transomScaffold, {
-});
+// Register my Transom Scaffold module.
+const scaffoldOpts = {};
+transom.configure(transomScaffold, scaffoldOpts);
 
 
 // Initialize my TransomJS API metadata.
-transom.initialize(myApi).then(function(server){
+transom.initialize(myApi).then(function (server) {
 
+	server.get('/', function (req, res, next) {
+		const samples = [
+			'http://localhost:7070/images/cat.gif',
+			'http://localhost:7070/images/theme/transomlogo.png',
+			'http://localhost:7070/css/red.css',
+			'http://localhost:7070/go-away',
+			'http://localhost:7070/go-away-forever'
+		];
+		let page = '<ul>';
+		for (const url of samples) {
+			page += `<li><a href="${url}">${url}</a></li>`
 
-
-	server.get('/', function(req,res,next){
-		res.send('Browse to http://localhost:7070/assets/transomlogo.png');
+		}
+		page += '</ul>';
+		res.setHeader('content-type', 'text/html');
+		res.end(page);
 	});
 
 
@@ -66,7 +77,8 @@ transom.initialize(myApi).then(function(server){
 	// ****************************************************************************
 	server.listen(7070, function () {
 		console.log('%s listening at %s', server.name, server.url);
-		console.log('browse to http://localhost:7070/assets/transomlogo.png');
+		opn(server.url);
 	});
-
+}).catch((error) => {
+	console.error('Argh', error);
 });
