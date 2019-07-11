@@ -13,8 +13,8 @@
   "author": "Wiebo Troost",
   "license": "MIT",
   "dependencies": {
-    "@transomjs/transom-core": "^1.0.8",
+    "@transomjs/transom-core": "^2.0.0",
     "@transomjs/transom-scaffold": "^1.2.3",
-    "opn": "^5.3.0"
+    "opn": "^6.0.0"
   }
 }

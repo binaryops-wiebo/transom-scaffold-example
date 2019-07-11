@@ -6,12 +6,12 @@ module.exports = {
         scaffold: {
 			staticRoutes: [{
 				/* Serve images files from a '/public-assets/images' folder in the project root. */
-				path:  /images\/?.*/,
-				folder: '/public-assets'
+				path:  '/images/*',
+				folder: '/public-assets/'
 			},
 			{
 				/* Serve CSS files from a '/css' folder in the project root. */
-				path: /css\/.*/
+				path: '/css/*', folder: '/'
 			}],
 			redirectRoutes: [{
 				/* Send a temporary redirect to users who (GET) request /go-away */
